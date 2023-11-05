@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings version="3.0" xmlns="https://jakarta.ee/xml/ns/jaxb">
+  <bindings scd="x-schema::tns" xmlns:tns="http://localhost/com/dexcode/apiserver">
+    <schemaBindings map="false">
+      <package name="com.dexcode.apiserver"/>
+    </schemaBindings>
+    <bindings scd="tns:getCountryRequest">
+      <class ref="com.dexcode.apiserver.Model.GetCountryRequest"/>
+    </bindings>
+    <bindings scd="tns:getCountryResponse">
+      <class ref="com.dexcode.apiserver.Model.GetCountryResponse"/>
+    </bindings>
+    <bindings scd="~tns:country">
+      <class ref="com.dexcode.apiserver.Model.Country"/>
+    </bindings>
+    <bindings scd="~tns:currency">
+      <typesafeEnumClass ref="com.dexcode.apiserver.Model.Currency"/>
+    </bindings>
+  </bindings>
+</bindings>
+
+<!-- settingan endpoint saya seperti ini
+
+@Endpoint
+public class CountryEndpoint {
+	private static final String NAMESPACE_URI = "http://spring.io/guides/gs-producing-web-service";
+    private static final String LOCAL_NAMESPACE_URI = "http://localhost:8080/";
+
+	private CountryRepository countryRepository;
+
+	@Autowired
+	public CountryEndpoint(CountryRepository countryRepository) {
+		this.countryRepository = countryRepository;
+	}
+
+	@PayloadRoot(namespace = LOCAL_NAMESPACE_URI, localPart = "getCountryRequest")
+	@ResponsePayload
+	public GetCountryResponse getCountry(@RequestPayload GetCountryRequest request) {
+		GetCountryResponse response = new GetCountryResponse();
+		response.setCountry(countryRepository.findCountry(request.getName()));
+
+		return response;
+	}
+}
+
+dan 
+
+application.yaml saya seperti ini
+server:
+  port: 8082
+  servlet:
+    context-path: /api
+ -->
+
